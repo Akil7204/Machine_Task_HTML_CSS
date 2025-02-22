@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="title">YAY! It's BOGO</h1>
+
+        <div class="option-box" data-units="1">
+            <div class="header-row">
+                <label class="radio-label">
+                    <input type="radio" name="units" value="1">
+                    <span>1 Unit</span>
+                    <span class="discount-tag">10% Off</span>
+                </label>
+                <div class="price">
+                    <div class="current-price">$10.00 USD</div>
+                    <div class="original-price">$24.00 USD</div>
+                </div>
+            </div>
+            <div class="options-grid">
+                <div class="select-wrapper">
+                    <div class="option-label">Size</div>
+                    <select>
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                    </select>
+                </div>
+                <div class="select-wrapper">
+                    <div class="option-label">Color</div>
+                    <select>
+                        <option>Black</option>
+                        <option>White</option>
+                        <option>Blue</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="option-box most-popular" data-units="2">
+            <div class="most-popular-tag">MOST POPULAR</div>
+            <div class="header-row">
+                <label class="radio-label">
+                    <input type="radio" name="units" value="2" checked>
+                    <span>2 Units</span>
+                    <span class="discount-tag">20% Off</span>
+                </label>
+                <div class="price">
+                    <div class="current-price">$18.00 USD</div>
+                    <div class="original-price">$24.00 USD</div>
+                </div>
+            </div>
+            <div class="options-grid">
+                <div class="select-wrapper">
+                    <div class="option-label">Size #1</div>
+                    <select>
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                    </select>
+                </div>
+                <div class="select-wrapper">
+                    <div class="option-label">Color #1</div>
+                    <select>
+                        <option>Black</option>
+                        <option>White</option>
+                        <option>Blue</option>
+                    </select>
+                </div>
+                <div class="select-wrapper">
+                    <div class="option-label">Size #2</div>
+                    <select>
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                    </select>
+                </div>
+                <div class="select-wrapper">
+                    <div class="option-label">Color #2</div>
+                    <select>
+                        <option>Black</option>
+                        <option>White</option>
+                        <option>Blue</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="option-box" data-units="3">
+            <div class="header-row">
+                <label class="radio-label">
+                    <input type="radio" name="units" value="3">
+                    <span>3 Units</span>
+                    <span class="discount-tag">30% Off</span>
+                </label>
+                <div class="price">
+                    <div class="current-price">$24.00 USD</div>
+                    <div class="original-price">$24.00 USD</div>
+                </div>
+            </div>
+            <div class="options-grid">
+                <div class="select-wrapper">
+                    <div class="option-label">Size #1</div>
+                    <select>
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                    </select>
+                </div>
+                <div class="select-wrapper">
+                    <div class="option-label">Color #1</div>
+                    <select>
+                        <option>Black</option>
+                        <option>White</option>
+                        <option>Blue</option>
+                    </select>
+                </div>
+                <div class="select-wrapper">
+                    <div class="option-label">Size #2</div>
+                    <select>
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                    </select>
+                </div>
+                <div class="select-wrapper">
+                    <div class="option-label">Color #2</div>
+                    <select>
+                        <option>Black</option>
+                        <option>White</option>
+                        <option>Blue</option>
+                    </select>
+                </div>
+                <div class="select-wrapper">
+                    <div class="option-label">Size #3</div>
+                    <select>
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                    </select>
+                </div>
+                <div class="select-wrapper">
+                    <div class="option-label">Color #3</div>
+                    <select>
+                        <option>Black</option>
+                        <option>White</option>
+                        <option>Blue</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="delivery-info">Free Delivery</div>
+            <div class="total">Total: $18.00 USD</div>
+            <button class="add-to-cart">+ Add to Cart</button>
+            <div class="powered-by">@ Powered by Pumper</div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const optionBoxes = document.querySelectorAll('.option-box');
+            const radioButtons = document.querySelectorAll('input[type="radio"]');
+
+            updateSelectedBox();
+
+            radioButtons.forEach(radio => {
+                radio.addEventListener('change', updateSelectedBox);
+            });
+
+            function updateSelectedBox() {
+                optionBoxes.forEach(box => {
+                    const radio = box.querySelector('input[type="radio"]');
+                    if (radio.checked) {
+                        box.classList.add('selected');
+                    } else {
+                        box.classList.remove('selected');
+                    }
+                });
+            }
+
+            optionBoxes.forEach(box => {
+                box.addEventListener('click', function (e) {
+                    if (e.target.tagName !== 'SELECT') {
+                        const radio = this.querySelector('input[type="radio"]');
+                        radio.checked = true;
+                        updateSelectedBox();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
